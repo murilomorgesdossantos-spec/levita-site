@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Levita - Início</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Fira+Code:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="bg-shape circle-1"></div>
+    <div class="bg-shape circle-2"></div>
+    <div class="bg-shape sphere-1"></div>
+    <div class="bg-shape sphere-2"></div>
+
+    <nav class="navbar animate-fade-in">
+        <div class="logo">LEVITA.</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Início</a></li>
+            <li><a href="visualizacao.html">Visualização</a></li>
+            <li><a href="sobre.html" class="btn-neon">SOBRE O TCC</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="hero animate-slide-up">
+            <h1 class="hero-title">SISTEMA DE<br><span class="text-gradient">LEVITAÇÃO MAGNÉTICA</span></h1>
+            <p class="hero-subtitle">Acompanhamento e telemetria em tempo real do controle PID para estabilização de campos eletromagnéticos.</p>
+        </section>
+
+        <header class="section-header animate-slide-up" style="animation-delay: 0.2s;">
+            <h2>Avanço Atual</h2>
+        </header>
+
+        <section id="current-stage-container" class="current-stage card glass animate-slide-up" style="animation-delay: 0.3s;">
+            <div style="text-align: center; color: var(--text-muted);">A carregar dados da folha de cálculo...</div>
+        </section>
+
+        <hr class="divider">
+
+        <section class="timeline animate-slide-up" style="animation-delay: 0.4s;">
+            <h2>Diário de Bordo</h2>
+            <div id="timeline-container">
+                </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Projeto Levita &copy; 2026 - Desenvolvido para fins académicos e educacionais.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
