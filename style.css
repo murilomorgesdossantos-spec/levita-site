@@ -13,6 +13,13 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* TRAVA DEFINITIVA DO EIXO X */
+html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    max-width: 100%;
+}
+
 body {
     background-color: var(--bg-color);
     background-image: linear-gradient(135deg, #12002b 0%, #080012 100%);
@@ -20,14 +27,16 @@ body {
     font-family: var(--font-text);
     line-height: 1.6;
     min-height: 100vh;
-    overflow-x: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.bg-pattern { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 24px 24px; z-index: -2; pointer-events: none; }
-.bg-shape { position: absolute; border-radius: 50%; z-index: -1; pointer-events: none; }
+/* Fundo fixo para não gerar rolagem */
+.bg-pattern { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 24px 24px; z-index: -2; pointer-events: none; }
+
+/* Formas geométricas agora são FIXED para não expandir o HTML */
+.bg-shape { position: fixed; border-radius: 50%; z-index: -1; pointer-events: none; }
 .circle-1 { width: 600px; height: 600px; border: 1px solid rgba(255, 255, 255, 0.03); top: 5%; right: -5%; }
 .circle-2 { width: 800px; height: 800px; border: 1px solid rgba(255, 255, 255, 0.02); bottom: -10%; left: -10%; }
 .sphere-1 { width: 300px; height: 300px; background: radial-gradient(circle at 30% 30%, rgba(208,0,255,0.8) 0%, rgba(112,0,255,0.4) 40%, transparent 70%); bottom: 10%; right: 5%; }
@@ -57,22 +66,19 @@ body {
 .hero-title { font-size: 4rem; line-height: 1.1; font-weight: 300; margin-bottom: 1.5rem; letter-spacing: -1px; }
 .text-gradient { font-weight: 600; background: linear-gradient(90deg, #fff, var(--accent-neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; }
-.container { padding: 2rem 5%; max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; flex: 1; }
+.container { padding: 2rem 5%; max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; flex: 1; width: 100%; }
 
 .glass { background: linear-gradient(145deg, rgba(30, 10, 50, 0.85), rgba(15, 0, 30, 0.95)); border: 1px solid var(--card-border); border-radius: 16px; }
-.card { padding: 2.5rem; margin-bottom: 2rem; }
+.card { padding: 2.5rem; margin-bottom: 2rem; max-width: 100%; }
 
 /* Dashboard Novo Layout */
 .dashboard { 
     display: grid; 
     grid-template-columns: 2fr 1fr; 
     gap: 2rem; 
-    align-items: stretch; /* Alinha as alturas das colunas perfeitamente */
+    align-items: stretch; 
 }
 
-/* =========================================
-   CABEÇALHO DO PAINEL PRINCIPAL COM ERRO
-========================================= */
 /* =========================================
    CABEÇALHO DO PAINEL PRINCIPAL COM ERRO
 ========================================= */
@@ -82,173 +88,83 @@ body {
     align-items: center;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Linha divisória sutil */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
 }
 
-.panel-header h2 {
-    margin-bottom: 0;
-    font-size: 1.5rem;
-    font-weight: 400;
-}
+.panel-header h2 { margin-bottom: 0; font-size: 1.5rem; font-weight: 400; }
 
 .error-badge {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem; /* Diminuí a distância entre a palavra e o número */
-    padding: 0.3rem 0.8rem; /* Diminuí a "gordura" (altura e largura) da caixa */
-    border-radius: 6px; 
+    display: flex; align-items: center; gap: 0.6rem; 
+    padding: 0.3rem 0.8rem; border-radius: 6px; 
     border: 1px solid rgba(208, 0, 255, 0.4);
     background: linear-gradient(90deg, rgba(208, 0, 255, 0.15), rgba(0,0,0,0.2));
     box-shadow: 0 0 10px rgba(208, 0, 255, 0.2);
 }
 
-.error-badge .label { 
-    font-size: 0.75rem; /* Letra um pouco menor */
-    color: rgba(255, 255, 255, 0.8); 
-}
-
-.error-badge .value { 
-    font-size: 1.3rem; /* Número ligeiramente menor para caber na nova caixa */
-    color: #fff; 
-    font-weight: 700; 
-    text-shadow: 0 0 8px rgba(208, 0, 255, 0.8);
-}
+.error-badge .label { font-size: 0.75rem; color: rgba(255, 255, 255, 0.8); }
+.error-badge .value { font-size: 1.3rem; color: #fff; font-weight: 700; text-shadow: 0 0 8px rgba(208, 0, 255, 0.8); }
 
 /* Painéis Gráficos */
-.visual-container { display: flex; gap: 1rem; height: 500px; }
-.chart-container { flex: 1; position: relative; background: rgba(0, 0, 0, 0.6); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.05); }
+.visual-container { display: flex; gap: 1rem; height: 500px; max-width: 100%; }
+.chart-container { flex: 1; position: relative; background: rgba(0, 0, 0, 0.6); border-radius: 12px; padding: 1rem; border: 1px solid rgba(255, 255, 255, 0.05); max-width: 100%; overflow: hidden; }
 
 /* Painel da Direita (Controles e Inputs) */
-.data-panel {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
+.data-panel { display: flex; flex-direction: column; height: 100%; max-width: 100%; }
 
-.sim-controls { 
-    display: flex; 
-    gap: 1rem; 
-    margin-bottom: 1.5rem; 
-    justify-content: space-between;
-}
+.sim-controls { display: flex; gap: 1rem; margin-bottom: 1.5rem; justify-content: space-between; }
 .play-btn { flex: 2; padding: 0.9rem; font-size: 0.95rem; border-radius: 8px; }
 .reset-btn { flex: 1; padding: 0.9rem; font-size: 0.95rem; border-radius: 8px; border-color: rgba(255, 255, 255, 0.3); }
 
 /* Cards de Dados e Inputs Numéricos */
-.data-grid { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 2.9rem; /* Mantendo a distância que você escolheu */
-}
+.data-grid { display: flex; flex-direction: column; gap: 2.9rem; }
 
 .data-card { 
-    padding: 1rem 1.5rem; 
-    border-radius: 8px; 
-    background: rgba(0, 0, 0, 0.3); 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-left: 4px solid rgba(255, 255, 255, 0.15); 
+    padding: 1rem 1.5rem; border-radius: 8px; background: rgba(0, 0, 0, 0.3); 
+    display: flex; justify-content: space-between; align-items: center; 
+    border: 1px solid rgba(255, 255, 255, 0.05); border-left: 4px solid rgba(255, 255, 255, 0.15); 
     transition: all 0.2s ease; 
 }
 .data-card:hover { transform: translateX(5px); border-left-color: var(--accent-neon); background: rgba(208, 0, 255, 0.08); }
 .data-card.highlight-sp { border-left-color: #fff; background: rgba(255, 255, 255, 0.08); }
 
-.label { 
-    font-size: 0.85rem; /* Letras levemente maiores */
-    color: rgba(255, 255, 255, 0.7); /* Branco suave */
-    text-transform: uppercase; 
-    letter-spacing: 1px; 
-    font-weight: 600;
-}
-
+.label { font-size: 0.85rem; color: rgba(255, 255, 255, 0.7); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 .code-font { font-family: var(--font-code); }
 
-/* Melhorando a visualização dos números de entrada (Inputs) */
+/* Inputs */
 .pid-input {
-    width: 95px; /* Um pouco mais largo para acomodar números grandes */
-    background: rgba(0, 0, 0, 0.4); /* Fundo escuro para destacar o número branco */
-    border: 1px solid rgba(208, 0, 255, 0.3); /* Borda levemente roxa por padrão */
-    color: #ffffff; /* Texto branco puro */
-    font-size: 1.3rem; /* Números maiores */
-    font-weight: 600;
-    text-shadow: 0 0 8px rgba(208, 0, 255, 0.5); /* Brilho neon leve no número */
-    padding: 0.5rem;
-    border-radius: 6px;
-    text-align: center; 
-    outline: none;
-    transition: all 0.2s ease;
+    width: 95px; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(208, 0, 255, 0.3); 
+    color: #ffffff; font-size: 1.3rem; font-weight: 600; text-shadow: 0 0 8px rgba(208, 0, 255, 0.5); 
+    padding: 0.5rem; border-radius: 6px; text-align: center; outline: none; transition: all 0.2s ease;
 }
-.pid-input:focus { 
-    border-color: var(--accent-neon); 
-    background: rgba(208, 0, 255, 0.1); 
-    box-shadow: 0 0 12px rgba(208, 0, 255, 0.4); /* Brilho na caixa ao digitar */
-}
+.pid-input:focus { border-color: var(--accent-neon); background: rgba(208, 0, 255, 0.1); box-shadow: 0 0 12px rgba(208, 0, 255, 0.4); }
 .pid-input:disabled { opacity: 0.5; cursor: not-allowed; }
 
 /* =========================================
    CSS ART: LEVITADOR
 ========================================= */
 .levitator-container { 
-    position: relative; 
-    width: 250px; 
-    background: radial-gradient(circle at center, rgba(30, 30, 40, 0.5), rgba(0, 0, 0, 0.8)); 
-    border-radius: 12px; 
-    overflow: hidden; 
-    border: 1px solid rgba(255, 255, 255, 0.05); 
+    position: relative; width: 250px; background: radial-gradient(circle at center, rgba(30, 30, 40, 0.5), rgba(0, 0, 0, 0.8)); 
+    border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); 
 }
 .levitator-css { position: relative; width: 100%; height: 100%; }
 
-.base-plate {
-    position: absolute; bottom: 0; left: 15px; right: 15px; height: 50px;
-    background: #111; border-radius: 4px 4px 0 0;
-    box-shadow: inset 0 3px 5px rgba(255,255,255,0.05), 5px 5px 15px rgba(0,0,0,0.8);
-}
-.pillar {
-    position: absolute; bottom: 50px; left: 35px; width: 35px; height: 360px;
-    background: linear-gradient(90deg, #0a0a0a 0%, #1a1a1a 50%, #050505 100%);
-    box-shadow: 5px 0 10px rgba(0,0,0,0.5);
-}
-.top-arm {
-    position: absolute; bottom: 410px; left: 25px; width: 140px; height: 45px;
-    background: linear-gradient(0deg, #0a0a0a, #1a1a1a); border-radius: 5px;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.5);
-}
-.top-nut {
-    position: absolute; bottom: 455px; left: 105px; width: 24px; height: 18px;
-    background: linear-gradient(90deg, #888, #ddd, #666); border-radius: 2px 2px 0 0;
-}
-.top-nut::after {
-    content: ''; position: absolute; top: -8px; left: 6px; width: 12px; height: 8px;
-    background: #ccc; border-radius: 2px 2px 0 0;
-}
-.coil {
-    position: absolute; bottom: 380px; left: 95px; width: 45px; height: 30px;
-    background: linear-gradient(90deg, #050505 0%, #1a1a1a 50%, #000 100%);
-    border-radius: 0 0 10px 10px; box-shadow: inset 0 -2px 5px rgba(255,255,255,0.05);
-}
-.magnet {
-    position: absolute; left: 100px; width: 35px; height: 18px;
-    background: linear-gradient(90deg, #666 0%, #eee 40%, #fff 50%, #999 80%, #444 100%);
-    border-radius: 2px; box-shadow: 0 10px 15px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.8);
-    transition: bottom 0.05s linear; z-index: 10;
-}
+.base-plate { position: absolute; bottom: 0; left: 15px; right: 15px; height: 50px; background: #111; border-radius: 4px 4px 0 0; box-shadow: inset 0 3px 5px rgba(255,255,255,0.05), 5px 5px 15px rgba(0,0,0,0.8); }
+.pillar { position: absolute; bottom: 50px; left: 35px; width: 35px; height: 360px; background: linear-gradient(90deg, #0a0a0a 0%, #1a1a1a 50%, #050505 100%); box-shadow: 5px 0 10px rgba(0,0,0,0.5); }
+.top-arm { position: absolute; bottom: 410px; left: 25px; width: 140px; height: 45px; background: linear-gradient(0deg, #0a0a0a, #1a1a1a); border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.5); }
+.top-nut { position: absolute; bottom: 455px; left: 105px; width: 24px; height: 18px; background: linear-gradient(90deg, #888, #ddd, #666); border-radius: 2px 2px 0 0; }
+.top-nut::after { content: ''; position: absolute; top: -8px; left: 6px; width: 12px; height: 8px; background: #ccc; border-radius: 2px 2px 0 0; }
+.coil { position: absolute; bottom: 380px; left: 95px; width: 45px; height: 30px; background: linear-gradient(90deg, #050505 0%, #1a1a1a 50%, #000 100%); border-radius: 0 0 10px 10px; box-shadow: inset 0 -2px 5px rgba(255,255,255,0.05); }
+.magnet { position: absolute; left: 100px; width: 35px; height: 18px; background: linear-gradient(90deg, #666 0%, #eee 40%, #fff 50%, #999 80%, #444 100%); border-radius: 2px; box-shadow: 0 10px 15px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.8); transition: bottom 0.05s linear; z-index: 10; }
 .magnet-line { position: absolute; top: 50%; width: 100%; height: 2px; background: rgba(0,0,0,0.6); }
 
-.linha-alvo {
-    position: absolute; left: 80px; width: 150px; height: 1px; border-top: 2px dashed rgba(255, 255, 255, 0.4);
-    pointer-events: none; transition: bottom 0.1s ease; z-index: 5;
-}
-.linha-alvo span {
-    position: absolute; right: 0; top: -22px; color: #fff; font-size: 0.75rem; font-weight: bold;
-    background: rgba(255, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3);
-}
+.linha-alvo { position: absolute; left: 80px; width: 150px; height: 1px; border-top: 2px dashed rgba(255, 255, 255, 0.4); pointer-events: none; transition: bottom 0.1s ease; z-index: 5; }
+.linha-alvo span { position: absolute; right: 0; top: -22px; color: #fff; font-size: 0.75rem; font-weight: bold; background: rgba(255, 255, 255, 0.1); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
 
 /* Diário de Bordo */
 .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 .status-badge { background: rgba(106, 0, 255, 0.2); color: #d000ff; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; border: 1px solid rgba(208, 0, 255, 0.3); }
-.slide-placeholder { width: 100%; height: 400px; background: rgba(0, 0, 0, 0.5); border-radius: 8px; margin: 1.5rem 0; display: flex; align-items: center; justify-content: center; }
+.slide-placeholder { width: 100%; height: 400px; background: rgba(0, 0, 0, 0.5); border-radius: 8px; margin: 1.5rem 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.slide-placeholder iframe { max-width: 100%; }
 
 /* Linha do Tempo */
 .timeline { margin-top: 2rem; padding-left: 1rem; }
@@ -265,113 +181,42 @@ body {
 ========================================= */
 
 @media (max-width: 992px) {
-    .dashboard { 
-        grid-template-columns: 1fr !important; 
-    }
-    .hero {
-        padding: 4rem 0;
-    }
-    .hero-title {
-        font-size: 3rem;
-    }
+    .dashboard { grid-template-columns: 1fr !important; }
+    .hero { padding: 4rem 0; }
+    .hero-title { font-size: 3rem; }
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 1.5rem 5%;
-    }
+    .card { padding: 1.5rem 1rem; }
+    .container { padding: 1.5rem 1rem; }
     
-    /* Tipografia ajustada para não vazar a tela */
-    .hero-title {
-        font-size: 2.2rem;
-    }
-    .hero-subtitle {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
+    p, h1, h2, h3, a, span { word-break: break-word; }
     
-    /* Navbar: menus centralizados */
-    .navbar { 
-        flex-direction: column; 
-        gap: 1.2rem; 
-        padding: 1.5rem 1rem; 
-        text-align: center;
-    }
-    .nav-links { 
-        flex-wrap: wrap; 
-        justify-content: center; 
-        gap: 1rem; 
-    }
+    .hero-title { font-size: 2.2rem; }
+    .hero-subtitle { font-size: 1rem; margin-bottom: 2rem; }
     
-    /* Cabeçalho do painel de dados */
-    .panel-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
+    .navbar { flex-direction: column; gap: 1.2rem; padding: 1.5rem 1rem; text-align: center; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    
+    .panel-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
 
-    /* O Segredo do Levitador: Manter tamanho fixo e centralizar */
-    .visual-container { 
-        flex-direction: column; 
-        height: auto; 
-        gap: 2rem;
-    }
-    .chart-container { 
-        height: 300px; 
-        width: 100%;
-    }
-    .levitator-container { 
-        width: 250px; /* Mantém a proporção do CSS Art intacta */
-        height: 400px; 
-        margin: 0 auto; /* Centraliza a caixa na tela */
-    }
+    .visual-container { flex-direction: column; height: auto; gap: 2rem; }
+    .chart-container { height: 300px; width: 100%; padding: 0.5rem; }
+    .levitator-container { width: 250px; height: 400px; margin: 0 auto; }
     
-    /* Botões de controle lado a lado ou empilhados harmonicamente */
-    .sim-controls { 
-        flex-direction: column; 
-    }
-    .play-btn, .reset-btn {
-        width: 100%;
-    }
+    .sim-controls { flex-direction: column; }
+    .play-btn, .reset-btn { width: 100%; }
     
-    /* Inputs do PID: Redução do espaço gigante entre eles */
-    .data-grid {
-        gap: 1rem; 
-    }
-    .data-card { 
-        flex-direction: row; 
-        align-items: center; 
-        padding: 1rem 1.2rem;
-    }
-    .pid-input {
-        width: 80px; 
-        font-size: 1.1rem;
-    }
+    .data-grid { gap: 1rem; }
+    .data-card { flex-direction: row; align-items: center; padding: 1rem 1.2rem; }
+    .pid-input { width: 80px; font-size: 1.1rem; }
     
-    /* Diário de bordo */
-    .timeline-item {
-        padding: 0 0 2rem 1.5rem;
-    }
+    .timeline-item { padding: 0 0 2rem 1.5rem; }
 }
 
 @media (max-width: 480px) {
-    /* Ajustes finos para celulares pequenos */
-    .hero-title {
-        font-size: 1.8rem;
-    }
-    
-    /* Joga o input para baixo do texto se não houver largura suficiente */
-    .data-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.8rem;
-    }
-    .pid-input {
-        width: 100%;
-        text-align: center;
-    }
-    .error-badge {
-        width: 100%;
-        justify-content: space-between;
-    }
+    .hero-title { font-size: 1.8rem; }
+    .data-card { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+    .pid-input { width: 100%; text-align: center; }
+    .error-badge { width: 100%; justify-content: space-between; }
 }
