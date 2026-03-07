@@ -260,22 +260,118 @@ body {
 /* Rodapé */
 .footer { text-align: center; padding: 2rem 1rem; margin-top: 4rem; border-top: 1px solid rgba(255, 255, 255, 0.05); background: rgba(8, 0, 18, 0.8); color: var(--text-muted); font-size: 0.85rem; letter-spacing: 1px; }
 
-/* Responsividade */
+/* =========================================
+   RESPONSIVIDADE APRIMORADA (MOBILE)
+========================================= */
+
 @media (max-width: 992px) {
-    .dashboard { grid-template-columns: 1fr !important; }
+    .dashboard { 
+        grid-template-columns: 1fr !important; 
+    }
+    .hero {
+        padding: 4rem 0;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
 }
+
 @media (max-width: 768px) {
+    .container {
+        padding: 1.5rem 5%;
+    }
+    
+    /* Tipografia ajustada para não vazar a tela */
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* Navbar: menus centralizados */
+    .navbar { 
+        flex-direction: column; 
+        gap: 1.2rem; 
+        padding: 1.5rem 1rem; 
+        text-align: center;
+    }
+    .nav-links { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 1rem; 
+    }
+    
+    /* Cabeçalho do painel de dados */
     .panel-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
 
-    .navbar { flex-direction: column; gap: 1rem; padding: 1rem; }
-    .nav-links { flex-wrap: wrap; justify-content: center; gap: 1.2rem; }
-    .visual-container { flex-direction: column; height: auto; }
-    .chart-container { height: 350px; }
-    .levitator-container { width: 100%; height: 400px; }
-    .sim-controls { flex-direction: column; }
-    .data-card { flex-direction: row; align-items: center; }
+    /* O Segredo do Levitador: Manter tamanho fixo e centralizar */
+    .visual-container { 
+        flex-direction: column; 
+        height: auto; 
+        gap: 2rem;
+    }
+    .chart-container { 
+        height: 300px; 
+        width: 100%;
+    }
+    .levitator-container { 
+        width: 250px; /* Mantém a proporção do CSS Art intacta */
+        height: 400px; 
+        margin: 0 auto; /* Centraliza a caixa na tela */
+    }
+    
+    /* Botões de controle lado a lado ou empilhados harmonicamente */
+    .sim-controls { 
+        flex-direction: column; 
+    }
+    .play-btn, .reset-btn {
+        width: 100%;
+    }
+    
+    /* Inputs do PID: Redução do espaço gigante entre eles */
+    .data-grid {
+        gap: 1rem; 
+    }
+    .data-card { 
+        flex-direction: row; 
+        align-items: center; 
+        padding: 1rem 1.2rem;
+    }
+    .pid-input {
+        width: 80px; 
+        font-size: 1.1rem;
+    }
+    
+    /* Diário de bordo */
+    .timeline-item {
+        padding: 0 0 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes finos para celulares pequenos */
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    /* Joga o input para baixo do texto se não houver largura suficiente */
+    .data-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    .pid-input {
+        width: 100%;
+        text-align: center;
+    }
+    .error-badge {
+        width: 100%;
+        justify-content: space-between;
+    }
 }
