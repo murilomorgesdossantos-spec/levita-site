@@ -220,3 +220,69 @@ body {
     .pid-input { width: 100%; text-align: center; }
     .error-badge { width: 100%; justify-content: space-between; }
 }
+
+/* =========================================
+   PÁGINA DA EQUIPE
+========================================= */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.member-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(208, 0, 255, 0.15);
+}
+
+.member-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    padding: 4px;
+    background: linear-gradient(135deg, var(--accent-neon), var(--accent-solid));
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 20px rgba(208, 0, 255, 0.2);
+}
+
+.member-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--text-main);
+}
+
+.member-role {
+    font-size: 0.85rem;
+    color: var(--accent-neon);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+}
+
+.lattes-summary {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    flex-grow: 1; /* Faz os botões alinharem por igual embaixo */
+}
+
+.lattes-link {
+    font-size: 0.85rem;
+    padding: 0.5rem 1.5rem;
+    width: 100%;
+}
